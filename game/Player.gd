@@ -1,0 +1,27 @@
+extends KinematicBody2D
+
+const MAX_SPEED = 200
+const TIME_TO_MAX_SPEED = 0.2
+const TIME_TO_HALT = 0.1
+
+onready var ACCELERATION = MAX_SPEED / TIME_TO_MAX_SPEED
+onready var DECELERATION = -MAX_SPEED / TIME_TO_HALT
+
+var velocity = Vector2(0, 0)
+
+func _physics_process(delta):
+	var move_dir = Vector2(
+		float(Input.is_action_pressed("move_right")) - float(Input.is_action_pressed("move_left")),
+		float(Input.is_action_pressed("move_down")) - float(Input.is_action_pressed("move_up"))
+	)
+	move_dir = move_dir.normalized()
+	
+	var speed = velocity.length()
+	if move_dir.length_squared() > 0:
+		speed = min(speed + ACCELERATION * delta, MAX_SPEED)
+		velocity = move_dir * speed
+	else:
+		speed = max(speed + DECELERATION * delta, 0)
+		velocity = velocity.normalized() * speed
+	
+	move_and_slide(velocity)
