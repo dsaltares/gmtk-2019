@@ -7,7 +7,10 @@ const TIME_TO_HALT = 0.1
 onready var ACCELERATION = MAX_SPEED / TIME_TO_MAX_SPEED
 onready var DECELERATION = -MAX_SPEED / TIME_TO_HALT
 
+onready var sprite = $AnimatedSprite
+
 var velocity = Vector2(0, 0)
+var last_horizontal_dir = 0
 
 func _physics_process(delta):
 	var move_dir = Vector2(
@@ -24,4 +27,8 @@ func _physics_process(delta):
 		speed = max(speed + DECELERATION * delta, 0)
 		velocity = velocity.normalized() * speed
 	
+	if velocity.x != 0:
+		last_horizontal_dir = sign(velocity.x)
+	
+	sprite.flip_h = last_horizontal_dir < 0
 	move_and_slide(velocity)
