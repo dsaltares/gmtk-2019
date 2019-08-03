@@ -1,16 +1,16 @@
 extends Node
 
 const LEVELS = [
-	'res://Playground_david.tscn',
+	'res://levels/LevelOne.tscn',
+	'res://levels/LevelTwo.tscn',
+	'res://levels/LevelThree.tscn',
 ]
 
 var current_level = null
 var current_level_idx = 0
 
 func _ready():
-	var root = get_tree().get_root()
-	current_level = root.get_child(root.get_child_count() - 1)
-	connect_to_doors()
+	go_to_level(LEVELS[0])
 
 func go_to_level(path):
 	call_deferred('deferred_go_to_level', path)
