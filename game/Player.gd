@@ -37,6 +37,7 @@ func _physics_process(delta):
 	update_movement(delta)
 	update_weapon()
 	update_animation()
+	update_weapon_texture()
 
 
 func update_movement(delta):

@@ -6,6 +6,8 @@ const Items = preload('res://Items.gd')
 const red_spell = preload('res://door/red_spell.png')
 const blue_spell = preload('res://door/blue_spell.png')
 
+signal player_exited
+
 onready var shape = $CollisionShape2D
 
 export(bool) var open = false setget set_open
@@ -19,6 +21,8 @@ func _ready():
 	initial_mask = collision_mask
 	$Spell1/AnimationPlayer.play("idle")
 	$Spell2/AnimationPlayer.play("idle")
+	
+	$Area2D.connect('body_entered', self, 'on_Area2D_body_entered')
 
 func set_open(value):
 	open = value
@@ -40,3 +44,7 @@ func set_color(new_color):
 	
 	$Spell1/Sprite.texture = texture
 	$Spell2/Sprite.texture = texture
+
+func on_Area2D_body_entered(body):
+	if body.is_in_group('player'):
+		emit_signal('player_exited')
