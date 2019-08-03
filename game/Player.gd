@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal camera_shake_requested
+
 const MAX_SPEED = 200
 const TIME_TO_MAX_SPEED = 0.2
 const TIME_TO_HALT = 0.1
@@ -11,6 +13,7 @@ onready var sprite = $AnimatedSprite
 onready var weapon = $WeaponPivot
 onready var shoot_position = $WeaponPivot/ShootPoint
 onready var weapon_raycast = $WeaponPivot/RayCast2D
+onready var pickup_animation = $PickUp/AnimationPlayer
 
 var Projectile = preload('res://projectile/Projectile.tscn');
 
@@ -68,4 +71,6 @@ func update_animation():
 		sprite.animation = animation
 		
 func pick_up_ammo():
+	emit_signal('camera_shake_requested', 2.5, 0.5)
+	pickup_animation.play("pickup")
 	can_shoot = true
