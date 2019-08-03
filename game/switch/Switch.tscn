@@ -11,7 +11,7 @@ extents = Vector2( 10, 5.80501 )
 ]]
 position = Vector2( 8, 8 )
 frames = ExtResource( 1 )
-animation = "on"
+animation = "off"
 playing = true
 script = ExtResource( 2 )
 

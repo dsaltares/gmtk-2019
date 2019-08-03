@@ -2,6 +2,7 @@
 extends KinematicBody2D
 
 const Items = preload('res://Items.gd')
+const no_ammo_weapon = preload('res://wizzard/weapon_no_ammo_magic_staff.png')
 const red_weapon = preload('res://wizzard/weapon_red_magic_staff.png')
 const blue_weapon = preload('res://wizzard/weapon_blue_magic_staff.png')
 
@@ -75,6 +76,7 @@ func update_weapon():
 		projectile.color = color
 		get_tree().get_root().add_child(projectile)
 		can_shoot = false
+		update_weapon_texture()
 
 func update_animation():
 	var animation = null
@@ -89,9 +91,17 @@ func update_animation():
 func pick_up_ammo():
 	pickup_animation.play("pickup")
 	can_shoot = true
+	update_weapon_texture()
 	
 func set_color(new_color):
 	color = new_color
+	update_weapon_texture()
+	
+func update_weapon_texture():
+	if not can_shoot:
+		$WeaponPivot/Weapon.texture = no_ammo_weapon
+		return
+		
 	var texture = red_weapon
 	match color:
 		Items.Colors.RED:
