@@ -13,6 +13,8 @@ onready var weapon = $WeaponPivot
 var velocity = Vector2(0, 0)
 var last_horizontal_dir = 0
 
+var can_shoot = true
+
 func _physics_process(delta):
 	update_movement(delta)
 	update_weapon()
@@ -39,7 +41,8 @@ func update_movement(delta):
 	move_and_slide(velocity)
 	
 func update_weapon():
-	var mouse_position = get_global_mouse_position()
-	weapon.look_at(mouse_position)
+	var look_vec = get_global_mouse_position() - global_position
+	weapon.global_rotation = atan2(look_vec.y, look_vec.x)
 	
-	
+	if can_shoot and Input.is_action_pressed("shoot"):
+		pass
