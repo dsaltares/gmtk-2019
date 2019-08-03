@@ -66,3 +66,5 @@ func update_animation():
 	if animation != sprite.animation and animation != null:
 		sprite.animation = animation
 		
+func pick_up_ammo():
+	can_shoot = true
