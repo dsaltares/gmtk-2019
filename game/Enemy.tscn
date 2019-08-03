@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://imp/imp_idle_anim_f0.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://imp/imp_run_anim_f1.png" type="Texture" id=7]
 [ext_resource path="res://imp/imp_run_anim_f2.png" type="Texture" id=8]
 [ext_resource path="res://imp/imp_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://imp/6_flamelash_spritesheet.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,7 +18,7 @@ animations = [ {
 "name": "idle",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [  ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
@@ -31,19 +32,52 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.56351, 4.79846 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "death"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4, 0.42, 0.44, 0.46, 0.48, 0.5, 0.52, 0.54, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7, 0.72, 0.74, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.92, 0.94, 0.96 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 ]
+}
+
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 collision_mask = 22
 script = ExtResource( 1 )
+MAX_SPEED = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.184418, -5.16351 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
 playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.507599, -3.91588 )
 shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/death = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.972748, -5.40798 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 10 )
+vframes = 7
+hframes = 7
+frame = 48

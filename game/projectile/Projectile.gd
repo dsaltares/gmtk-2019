@@ -43,6 +43,10 @@ func _physics_process(delta):
 			emit_signal('camera_shake_requested', 2.0, 0.50)
 			set_color(collider.color)
 			self.shooter.color = collider.color
+		elif collider.is_in_group('enemy'):
+			emit_signal('camera_shake_requested', 2.0, 0.50)
+			collider.kill()
+			collider.add_collision_exception_with(self)
 		else:
 			emit_signal('camera_shake_requested', 1.25, 0.75)
 		
