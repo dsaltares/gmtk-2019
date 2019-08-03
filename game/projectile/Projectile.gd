@@ -31,7 +31,12 @@ func _physics_process(delta):
 		var collider = collision.collider
 		if collider.is_in_group('player'):
 			emit_signal('collide_with_player')
+			emit_signal('camera_shake_requested', 2.5, 0.5)
 			queue_free()
+		elif collider.is_in_group('switches'):
+			emit_signal('camera_shake_requested', 2.0, 0.50)
+			collider.toggle()
+			collider.add_collision_exception_with(self)
 		else:
 			emit_signal('camera_shake_requested', 1.25, 0.75)
 			direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal

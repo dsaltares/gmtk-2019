@@ -2,37 +2,37 @@
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://wizzard/weapon_red_magic_staff.png" type="Texture" id=2]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=3]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=4]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=5]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=6]
-[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=7]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=8]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=9]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=10]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=11]
+[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=3]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=4]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=5]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=6]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=7]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=8]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=9]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=10]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=11]
 [ext_resource path="res://wizzard/pick_up_fire.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "idle",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.89552, 8.04179 )
+extents = Vector2( 5, 6 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "pickup"
@@ -60,11 +60,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.09, 0.27, 0.36, 0.42 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.556863 ), Color( 0.987451, 0.833726, 0.345882, 1 ), Color( 1, 0.262745, 0.207843, 1 ), Color( 0.454902, 0.321569, 0.152941, 1 ), Color( 0.454902, 0.321569, 0.152941, 0 ) ]
+"values": [ Color( 1, 1, 1, 0.556863 ), Color( 0.988235, 0.835294, 0.345098, 0.780392 ), Color( 1, 0.262745, 0.207843, 0.623529 ), Color( 0.454902, 0.321569, 0.152941, 0.858824 ), Color( 0.454902, 0.321569, 0.152941, 0 ) ]
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"camera_shakers",
 "player",
 ]]
 collision_mask = 22
@@ -89,7 +88,7 @@ collision_mask = 4
 position = Vector2( -0.184418, -5.16351 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
