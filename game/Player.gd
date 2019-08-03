@@ -1,6 +1,8 @@
+
 extends KinematicBody2D
 
 signal camera_shake_requested
+signal position_changed
 
 const MAX_SPEED = 200
 const TIME_TO_MAX_SPEED = 0.2
@@ -22,10 +24,14 @@ var last_horizontal_dir = 0
 
 var can_shoot = true
 
+func _ready():
+	emit_signal("position_changed", position)
+	
 func _physics_process(delta):
 	update_movement(delta)
 	update_weapon()
 	update_animation()
+	
 	
 func update_movement(delta):
 	var move_dir = Vector2(
@@ -44,6 +50,9 @@ func update_movement(delta):
 	
 	if velocity.x != 0:
 		last_horizontal_dir = sign(velocity.x)
+		
+	if speed > 0:
+		emit_signal("position_changed", global_position)
 	
 	sprite.flip_h = last_horizontal_dir < 0
 	move_and_slide(velocity)
