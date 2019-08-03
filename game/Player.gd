@@ -41,3 +41,5 @@ func update_movement(delta):
 func update_weapon():
 	var mouse_position = get_global_mouse_position()
 	weapon.look_at(mouse_position)
+	
+	
