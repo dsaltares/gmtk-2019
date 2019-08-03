@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Playground.gd" type="Script" id=1]
 [ext_resource path="res://tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=5]
+[ext_resource path="res://Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=6]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,12 +26,8 @@ position = Vector2( 39.5838, 43.0714 )
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 39.0717, -7.13219 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 47.939, 43.1494 )
-current = true
-zoom = Vector2( 0.25, 0.25 )
+[node name="Camera" parent="." instance=ExtResource( 5 )]
 
 [node name="Crosshair" type="Node" parent="."]
-script = ExtResource( 5 )
-[connection signal="player_moved" from="." to="Enemy" method="_on_player_moved"]
+script = ExtResource( 6 )
 [connection signal="position_changed" from="Player" to="." method="_on_Player_position_changed"]

@@ -48,4 +48,5 @@ func update_shake():
 		
 func connect_to_shakers():
 	for camera_shaker in get_tree().get_nodes_in_group('camera_shakers'):
-		camera_shaker.connect('camera_shake_requested', self, '_on_camera_shake_requested')
+		if not camera_shaker.is_connected("camera_shake_requested", self, "_on_camera_shake_requested"):
+			camera_shaker.connect('camera_shake_requested', self, '_on_camera_shake_requested')
