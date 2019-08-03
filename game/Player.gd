@@ -21,6 +21,7 @@ onready var weapon = $WeaponPivot
 onready var shoot_position = $WeaponPivot/ShootPoint
 onready var weapon_raycast = $WeaponPivot/RayCast2D
 onready var pickup_animation = $PickUp/AnimationPlayer
+onready var death_animation = $DeathAnimation
 
 var Projectile = preload('res://projectile/Projectile.tscn');
 
@@ -29,6 +30,7 @@ var last_horizontal_dir = 0
 var color = Items.Colors.RED setget set_color
 
 var can_shoot = true
+var is_facing_left = false
 
 func _ready():
 	emit_signal("position_changed", position)
@@ -61,7 +63,7 @@ func update_movement(delta):
 	if speed > 0:
 		emit_signal("position_changed", global_position)
 
-	sprite.flip_h = last_horizontal_dir < 0
+	is_facing_left = last_horizontal_dir < 0 
 	move_and_slide(velocity)
 
 func update_weapon():
@@ -88,6 +90,8 @@ func update_animation():
 
 	if animation != sprite.animation and animation != null:
 		sprite.animation = animation
+		
+	sprite.flip_h = is_facing_left
 
 func pick_up_ammo():
 	pickup_animation.play("pickup")
@@ -113,3 +117,16 @@ func update_weapon_texture():
 			texture = blue_weapon
 	$WeaponPivot/Weapon.texture = texture
 	$WeaponPivot/ShootPoint/Light2D.color = Items.to_color(color)
+
+func kill():
+	sprite.animation = "hit"
+	emit_signal('camera_shake_requested', 12.5, 0.75)
+	if is_facing_left:
+		death_animation.play("death_left")
+	else:
+		death_animation.play("death_right")
+		
+	yield(death_animation,"animation_finished")
+	
+	sprite.animation = "hit"
+	set_physics_process(false)

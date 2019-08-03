@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal player_killed
+
 export var MAX_SPEED = 150
 
 onready var sprite = $AnimatedSprite
@@ -20,12 +22,17 @@ func _physics_process(delta) -> void:
 	
 func update_movement(delta) -> void:
 	var max_distance = MAX_SPEED * delta
-	var starting_position= position
+	var starting_position = position
+	
+	var collision = move_and_collide(Vector2.ZERO)
+	if collision != null and collision.collider.is_in_group("player"):
+			emit_signal("player_killed")
+	
 	for i in range(path.size()):
 		var distance_to_next = starting_position.distance_to(path[0])
 		var direction_to_next = starting_position.direction_to(path[0])
 		is_moving = false
-		is_facing_left = direction_to_next.x < 0 
+		is_facing_left = direction_to_next.x < 0
 		
 		if max_distance <= distance_to_next and max_distance >= 0.0:
 			position = starting_position.linear_interpolate(path[0], max_distance / distance_to_next)
