@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal camera_shake_requested
+signal collide_with_player
+
 const MAX_SPEED = 300
 const TIME_TO_MAX_SPEED = 0.2
 const TIME_TO_HALT = 0.4
@@ -27,7 +30,8 @@ func _physics_process(delta):
 	if collision != null:
 		var collider = collision.collider
 		if collider.is_in_group('player'):
-			collider.pick_up_ammo()
+			emit_signal('collide_with_player')
 			queue_free()
 		else:
+			emit_signal('camera_shake_requested', 1.25, 0.75)
 			direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal

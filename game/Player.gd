@@ -53,6 +53,7 @@ func update_weapon():
 		var projectile = Projectile.instance()
 		projectile.global_position = shoot_position.global_position
 		projectile.direction = (shoot_position.global_position - global_position).normalized()
+		projectile.connect('collide_with_player', self, 'pick_up_ammo')
 		get_tree().get_root().add_child(projectile)
 		can_shoot = false
 		

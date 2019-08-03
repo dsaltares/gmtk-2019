@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=3]
+[ext_resource path="res://Camera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=4]
 
 [node name="Root" type="Node2D"]
 
@@ -17,10 +18,7 @@ tile_data = PoolIntArray( -131079, 1, 0, -131078, 1, 0, -131077, 1, 0, -131076, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 39.5838, 43.0714 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 47.939, 43.1494 )
-current = true
-zoom = Vector2( 0.25, 0.25 )
+[node name="Camera" parent="." instance=ExtResource( 3 )]
 
 [node name="Crosshair" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
