@@ -1,6 +1,10 @@
 
 extends KinematicBody2D
 
+const Items = preload('res://Items.gd')
+const red_weapon = preload('res://wizzard/weapon_red_magic_staff.png')
+const blue_weapon = preload('res://wizzard/weapon_blue_magic_staff.png')
+
 signal camera_shake_requested
 signal position_changed
 
@@ -21,6 +25,7 @@ var Projectile = preload('res://projectile/Projectile.tscn');
 
 var velocity = Vector2(0, 0)
 var last_horizontal_dir = 0
+var color = Items.Colors.RED setget set_color
 
 var can_shoot = true
 
@@ -66,6 +71,8 @@ func update_weapon():
 		projectile.global_position = shoot_position.global_position
 		projectile.direction = (shoot_position.global_position - global_position).normalized()
 		projectile.connect('collide_with_player', self, 'pick_up_ammo')
+		projectile.shooter = self
+		projectile.color = color
 		get_tree().get_root().add_child(projectile)
 		can_shoot = false
 
@@ -82,3 +89,13 @@ func update_animation():
 func pick_up_ammo():
 	pickup_animation.play("pickup")
 	can_shoot = true
+	
+func set_color(new_color):
+	color = new_color
+	var texture = red_weapon
+	match color:
+		Items.Colors.RED:
+			texture = red_weapon
+		Items.Colors.BLUE:
+			texture = blue_weapon
+	$WeaponPivot/Weapon.texture = texture

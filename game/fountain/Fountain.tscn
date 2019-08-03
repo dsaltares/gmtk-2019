@@ -1,0 +1,87 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://fountain/Fountain.gd" type="Script" id=1]
+[ext_resource path="res://fountain/wall_fountain_mid_blue_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://fountain/wall_fountain_mid_blue_anim_f1.png" type="Texture" id=3]
+[ext_resource path="res://fountain/wall_fountain_mid_blue_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://fountain/wall_fountain_basin_blue_anim_f0.png" type="Texture" id=5]
+[ext_resource path="res://fountain/wall_fountain_basin_blue_anim_f1.png" type="Texture" id=6]
+[ext_resource path="res://fountain/wall_fountain_basin_blue_anim_f2.png" type="Texture" id=7]
+[ext_resource path="res://fountain/wall_fountain_mid_red_anim_f0.png" type="Texture" id=8]
+[ext_resource path="res://fountain/wall_fountain_mid_red_anim_f1.png" type="Texture" id=9]
+[ext_resource path="res://fountain/wall_fountain_mid_red_anim_f2.png" type="Texture" id=10]
+[ext_resource path="res://fountain/wall_fountain_basin_red_anim_f0.png" type="Texture" id=11]
+[ext_resource path="res://fountain/wall_fountain_basin_red_anim_f1.png" type="Texture" id=12]
+[ext_resource path="res://fountain/wall_fountain_basin_red_anim_f2.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 16 )
+
+[node name="Fountain" type="KinematicBody2D" groups=[
+"fountains",
+]]
+script = ExtResource( 1 )
+
+[node name="Blue" type="Node2D" parent="."]
+visible = false
+
+[node name="Top" type="AnimatedSprite" parent="Blue"]
+position = Vector2( 8, 8 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="Bottom" type="AnimatedSprite" parent="Blue"]
+position = Vector2( 8, 24 )
+frames = SubResource( 2 )
+frame = 2
+playing = true
+
+[node name="Red" type="Node2D" parent="."]
+
+[node name="Top" type="AnimatedSprite" parent="Red"]
+position = Vector2( 8, 8 )
+frames = SubResource( 4 )
+playing = true
+
+[node name="Bottom" type="AnimatedSprite" parent="Red"]
+position = Vector2( 8, 24 )
+frames = SubResource( 5 )
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 16 )
+shape = SubResource( 3 )

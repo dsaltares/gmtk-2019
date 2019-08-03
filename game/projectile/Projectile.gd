@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+const Items = preload('res://Items.gd')
+const red_texture = preload('res://projectile/sunburn.png')
+const blue_texture = preload('res://projectile/sunburn_blue.png')
+
 signal camera_shake_requested
 signal collide_with_player
 
@@ -14,6 +18,8 @@ const DECELERATION = -MAX_SPEED / TIME_TO_HALT
 var speed = 0
 var life_time = 0
 var direction = Vector2.ZERO
+var color = Items.Colors.RED setget set_color
+var shooter = null
 
 func _physics_process(delta):
 	if life_time < LIFE_TIME:
@@ -33,10 +39,22 @@ func _physics_process(delta):
 			emit_signal('collide_with_player')
 			emit_signal('camera_shake_requested', 2.5, 0.5)
 			queue_free()
-		elif collider.is_in_group('switches'):
+		elif collider.is_in_group('fountains'):
 			emit_signal('camera_shake_requested', 2.0, 0.50)
-			collider.toggle()
-			collider.add_collision_exception_with(self)
+			set_color(collider.color)
+			self.shooter.color = collider.color
 		else:
 			emit_signal('camera_shake_requested', 1.25, 0.75)
-			direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal
+		
+		direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal
+
+func set_color(new_color):
+	color = new_color
+	var texture = red_texture
+	match color:
+		Items.Colors.RED:
+			texture = red_texture
+		Items.Colors.BLUE:
+			texture = blue_texture
+	$Sprite.texture = texture
+			

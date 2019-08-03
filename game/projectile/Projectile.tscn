@@ -24,6 +24,7 @@ tracks/0/keys = {
 }
 
 [node name="Projectile" type="KinematicBody2D" groups=[
+"projectiles",
 "camera_shakers",
 ]]
 collision_layer = 8
