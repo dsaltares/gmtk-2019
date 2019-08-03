@@ -39,18 +39,21 @@ func _physics_process(delta):
 			emit_signal('collide_with_player')
 			emit_signal('camera_shake_requested', 2.5, 0.5)
 			queue_free()
-		elif collider.is_in_group('fountains'):
-			emit_signal('camera_shake_requested', 2.0, 0.50)
-			set_color(collider.color)
-			self.shooter.color = collider.color
 		elif collider.is_in_group('enemy'):
 			emit_signal('camera_shake_requested', 2.0, 0.50)
 			collider.kill()
 			collider.add_collision_exception_with(self)
+		elif collider.is_in_group('fountains'):
+			emit_signal('camera_shake_requested', 2.0, 0.50)
+			set_color(collider.color)
+			self.shooter.color = collider.color
+			bounce_off(collision)
 		else:
 			emit_signal('camera_shake_requested', 1.25, 0.75)
-		
-		direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal
+			bounce_off(collision)
+
+func bounce_off(collision):
+	direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal
 
 func set_color(new_color):
 	color = new_color
