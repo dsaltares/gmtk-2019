@@ -31,3 +31,4 @@ position = Vector2( 170, 71.9464 )
 [node name="Crosshair" type="Node" parent="."]
 script = ExtResource( 6 )
 [connection signal="position_changed" from="Player" to="." method="_on_Player_position_changed"]
+[connection signal="player_killed" from="Enemy" to="." method="_on_Enemy_player_killed"]
