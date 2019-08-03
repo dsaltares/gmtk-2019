@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
-const MAX_SPEED = 150
+export var MAX_SPEED = 150
 
 onready var sprite = $AnimatedSprite
+onready var animation = $AnimationPlayer
+
 var path = PoolVector2Array() setget set_path
+var is_dead = false
 var is_moving = false
 var is_facing_left = false
 
@@ -11,8 +14,9 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta) -> void:
-	update_movement(delta)
-	update_animation()
+	if not is_dead:
+		update_movement(delta)
+		update_animation()
 	
 func update_movement(delta) -> void:
 	var max_distance = MAX_SPEED * delta
@@ -47,6 +51,15 @@ func update_animation() -> void:
 		sprite.animation = animation
 	
 	sprite.flip_h = is_facing_left
+
+func kill() -> void:
+	is_dead = true
+	sprite.visible = false
+
+	animation.play("death")	
+	yield(animation, "animation_finished")
+
+	queue_free()
 
 func set_path(value: PoolVector2Array) -> void:
 	path = value
