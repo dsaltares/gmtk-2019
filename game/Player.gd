@@ -8,11 +8,16 @@ onready var ACCELERATION = MAX_SPEED / TIME_TO_MAX_SPEED
 onready var DECELERATION = -MAX_SPEED / TIME_TO_HALT
 
 onready var sprite = $AnimatedSprite
+onready var weapon = $WeaponPivot
 
 var velocity = Vector2(0, 0)
 var last_horizontal_dir = 0
 
 func _physics_process(delta):
+	update_movement(delta)
+	update_weapon()
+	
+func update_movement(delta):
 	var move_dir = Vector2(
 		float(Input.is_action_pressed("move_right")) - float(Input.is_action_pressed("move_left")),
 		float(Input.is_action_pressed("move_down")) - float(Input.is_action_pressed("move_up"))
@@ -32,3 +37,7 @@ func _physics_process(delta):
 	
 	sprite.flip_h = last_horizontal_dir < 0
 	move_and_slide(velocity)
+	
+func update_weapon():
+	var mouse_position = get_global_mouse_position()
+	weapon.look_at(mouse_position)
