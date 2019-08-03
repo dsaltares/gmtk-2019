@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 600
+const SPEED = 300
 
 var direction = Vector2.ZERO
 

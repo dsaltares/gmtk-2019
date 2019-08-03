@@ -9,6 +9,10 @@ onready var DECELERATION = -MAX_SPEED / TIME_TO_HALT
 
 onready var sprite = $AnimatedSprite
 onready var weapon = $WeaponPivot
+onready var shoot_position = $WeaponPivot/ShootPoint
+onready var weapon_raycast = $WeaponPivot/RayCast2D
+
+var Projectile = preload('res://projectile/Projectile.tscn');
 
 var velocity = Vector2(0, 0)
 var last_horizontal_dir = 0
@@ -45,8 +49,12 @@ func update_weapon():
 	var look_vec = get_global_mouse_position() - global_position
 	weapon.global_rotation = atan2(look_vec.y, look_vec.x)
 	
-	if can_shoot and Input.is_action_pressed("shoot"):
-		pass
+	if can_shoot and not weapon_raycast.is_colliding() and Input.is_action_just_pressed("shoot"):
+		var projectile = Projectile.instance()
+		projectile.global_position = shoot_position.global_position
+		projectile.direction = (shoot_position.global_position - global_position).normalized()
+		get_tree().get_root().add_child(projectile)
+		can_shoot = false
 		
 func update_animation():
 	var animation = null
@@ -57,3 +65,4 @@ func update_animation():
 	
 	if animation != sprite.animation and animation != null:
 		sprite.animation = animation
+		
