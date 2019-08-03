@@ -1,6 +1,8 @@
 extends Node2D
 
-signal player_moved
-
 func _on_Player_position_changed(player_position):
-	emit_signal("player_moved", player_position)
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	
+	for i in enemies.size():
+		var enemy = enemies[i]
+		enemy.path = $Navigation2D.get_simple_path(enemy.position, player_position, false)

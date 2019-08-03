@@ -1,60 +1,55 @@
 extends KinematicBody2D
 
 const MAX_SPEED = 150
-const TIME_TO_MAX_SPEED = 0.2
-const TIME_TO_HALT = 0.1
-
-onready var ACCELERATION = MAX_SPEED / TIME_TO_MAX_SPEED
-onready var DECELERATION = -MAX_SPEED / TIME_TO_HALT
 
 onready var sprite = $AnimatedSprite
+var path = PoolVector2Array() setget set_path
+var is_moving = false
+var is_facing_left = false
 
-var velocity = Vector2(0, 0)
-var last_horizontal_dir = 0
-var target_position = Vector2(0, 0)
+func _ready() -> void:
+	set_physics_process(false)
 
-func _ready():
-	$DirectionTimer.start()
-
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	update_movement(delta)
 	update_animation()
 	
-func update_movement(delta):
-	var move_dir = Vector2(
-		target_position.x - position.x,
-		target_position.y - position.y
-	)
-	
-	var distance_to_target = move_dir.length_squared()
-	
-	if position.distance_squared_to(target_position) > 100:
-		var path = $Navigation2D.get_simple_path(global_position, target_position)
-		move_dir = move_dir.normalized()
+func update_movement(delta) -> void:
+	var max_distance = MAX_SPEED * delta
+	var starting_position= position
+	for i in range(path.size()):
+		var distance_to_next = starting_position.distance_to(path[0])
+		var direction_to_next = starting_position.direction_to(path[0])
+		is_moving = false
+		is_facing_left = direction_to_next.x < 0 
 		
-		var speed = velocity.length()
-		if move_dir.length_squared() > 0:
-			speed = min(speed + ACCELERATION * delta, MAX_SPEED)
-			velocity = move_dir * speed
-		else:
-			speed = max(speed + DECELERATION * delta, 0)
-			velocity = velocity.normalized() * speed
+		if max_distance <= distance_to_next and max_distance >= 0.0:
+			position = starting_position.linear_interpolate(path[0], max_distance / distance_to_next)
+			is_moving = true
+			break
+		elif max_distance < 0.0:
+			position = path[0]
+			set_physics_process(false)
+			break
 		
-		if velocity.x != 0:
-			last_horizontal_dir = sign(velocity.x)
-		
-		sprite.flip_h = last_horizontal_dir < 0
-		move_and_slide(velocity)
+		max_distance -= distance_to_next
+		starting_position = path[0]
+		path.remove(0)
 			
-func update_animation():
+func update_animation() -> void:
 	var animation = null
-	if velocity.length_squared() > 0:
+	if is_moving:
 		animation = 'run'
 	else:
 		animation = 'idle'
 	
 	if animation != sprite.animation and animation != null:
 		sprite.animation = animation
+	
+	sprite.flip_h = is_facing_left
 
-func _on_player_moved(player_position):
-	target_position = player_position
+func set_path(value: PoolVector2Array) -> void:
+	path = value
+	
+	if value.size() != 0:
+		set_physics_process(true)
