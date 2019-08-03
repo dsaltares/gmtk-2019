@@ -98,6 +98,8 @@ func set_color(new_color):
 	update_weapon_texture()
 	
 func update_weapon_texture():
+	$WeaponPivot/ShootPoint/Light2D.visible = can_shoot
+	
 	if not can_shoot:
 		$WeaponPivot/Weapon.texture = no_ammo_weapon
 		return
@@ -109,3 +111,4 @@ func update_weapon_texture():
 		Items.Colors.BLUE:
 			texture = blue_weapon
 	$WeaponPivot/Weapon.texture = texture
+	$WeaponPivot/ShootPoint/Light2D.color = Items.to_color(color)

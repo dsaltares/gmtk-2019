@@ -1,31 +1,32 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://wizzard/weapon_red_magic_staff.png" type="Texture" id=2]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=3]
-[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=4]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=5]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=6]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=7]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=8]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=9]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=10]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=11]
-[ext_resource path="res://wizzard/pick_up_fire.png" type="Texture" id=12]
+[ext_resource path="res://wizzard/light_01.png" type="Texture" id=3]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=4]
+[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=5]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=9]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=10]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=11]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=12]
+[ext_resource path="res://wizzard/pick_up_fire.png" type="Texture" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "idle",
 "speed": 4.0
@@ -80,6 +81,11 @@ offset = Vector2( 0, -14 )
 [node name="ShootPoint" type="Position2D" parent="WeaponPivot"]
 position = Vector2( 25.0799, 0.184414 )
 
+[node name="Light2D" type="Light2D" parent="WeaponPivot/ShootPoint"]
+texture = ExtResource( 3 )
+texture_scale = 0.06
+color = Color( 0, 0.694118, 1, 1 )
+
 [node name="RayCast2D" type="RayCast2D" parent="WeaponPivot"]
 enabled = true
 cast_to = Vector2( 24, 0 )
@@ -89,6 +95,7 @@ collision_mask = 4
 position = Vector2( -0.184418, -5.16351 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -99,7 +106,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="PickUp"]
 modulate = Color( 0.454902, 0.321569, 0.152941, 0 )
 scale = Vector2( 1.75, 1.75 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 vframes = 6
 hframes = 6
 frame = 30
