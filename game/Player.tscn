@@ -17,7 +17,7 @@ animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "run",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -27,7 +27,7 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "idle",
-"speed": 2.0
+"speed": 4.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -48,7 +48,7 @@ offset = Vector2( 0, -14 )
 position = Vector2( -0.184418, -5.16351 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

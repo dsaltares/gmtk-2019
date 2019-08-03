@@ -18,6 +18,7 @@ var can_shoot = true
 func _physics_process(delta):
 	update_movement(delta)
 	update_weapon()
+	update_animation()
 	
 func update_movement(delta):
 	var move_dir = Vector2(
@@ -46,3 +47,13 @@ func update_weapon():
 	
 	if can_shoot and Input.is_action_pressed("shoot"):
 		pass
+		
+func update_animation():
+	var animation = null
+	if velocity.length_squared() > 0:
+		animation = 'run'
+	else:
+		animation = 'idle'
+	
+	if animation != sprite.animation and animation != null:
+		sprite.animation = animation
