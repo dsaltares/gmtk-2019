@@ -26,7 +26,10 @@ func update_movement(delta) -> void:
 	
 	var collision = move_and_collide(Vector2.ZERO)
 	if collision != null and collision.collider.is_in_group("player"):
-			emit_signal("player_killed")
+		emit_signal("player_killed")
+		collision.collider.add_collision_exception_with(self)
+		return
+
 	
 	for i in range(path.size()):
 		var distance_to_next = starting_position.distance_to(path[0])

@@ -119,14 +119,11 @@ func update_weapon_texture():
 	$WeaponPivot/ShootPoint/Light2D.color = Items.to_color(color)
 
 func kill():
-	sprite.animation = "hit"
 	emit_signal('camera_shake_requested', 12.5, 0.75)
+	set_physics_process(false)
+	sprite.animation = "hit"
+	
 	if is_facing_left:
 		death_animation.play("death_left")
 	else:
 		death_animation.play("death_right")
-		
-	yield(death_animation,"animation_finished")
-	
-	sprite.animation = "hit"
-	set_physics_process(false)
