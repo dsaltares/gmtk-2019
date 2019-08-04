@@ -29,6 +29,7 @@ func transition_out(state):
 	call_deferred('deferred_transition')
 	
 func deferred_transition():	
+	clear_transition()
 	transition = Transition.instance()
 	transition.play('out')
 	transition.connect('done', self, 'on_TransitionOut_done')
@@ -43,20 +44,27 @@ func deferred_transition_out():
 	transition_in()
 
 func clear_scene():
+	clear_level()
+	clear_message()
+	clear_transition()
+		
+func clear_level():
 	if level:
 		level.free()
 		level = null
 		
+	for projectile in get_tree().get_nodes_in_group('projectiles'):
+		projectile.free()
+		
+func clear_transition():
 	if transition:
 		transition.free()
 		transition = null
-	
+		
+func clear_message():
 	if message_screen:
 		message_screen.free()
 		message_screen = null
-	
-	for projectile in get_tree().get_nodes_in_group('projectiles'):
-		projectile.free()
 
 func load_next_scene():
 	match next_state:
@@ -68,6 +76,7 @@ func load_next_scene():
 			load_death_screen()
 
 func transition_in():
+	clear_transition()
 	transition = Transition.instance()
 	transition.play('in')
 	transition.connect('done', self, 'on_TransitionIn_done')
