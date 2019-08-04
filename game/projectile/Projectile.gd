@@ -33,6 +33,10 @@ func _physics_process(delta):
 	var motion = direction * speed * delta
 	var collision = move_and_collide(motion)
 	
+	if speed == 0.0:
+		set_color(Items.Colors.RED)
+		self.shooter.color = Items.Colors.RED
+	
 	if collision != null:
 		var collider = collision.collider
 		if collider.is_in_group('player'):

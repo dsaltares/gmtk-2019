@@ -31,10 +31,11 @@ func update_visibility():
 		if ray_hit:
 			var name = ray_hit.collider.name
 			if name == "Player" or name == "Projectile":
+				print(rad2deg(abs(position.angle_to_point(ray_hit.collider.position))))
 				if is_facing_left:
-					can_see = rad2deg(abs(position.angle_to_point(ray_hit.collider.position))) < 60
+					can_see = rad2deg(abs(position.angle_to_point(ray_hit.collider.position))) < 80
 				else:
-					can_see = rad2deg(abs(position.angle_to_point(ray_hit.collider.position))) > 120
+					can_see = rad2deg(abs(position.angle_to_point(ray_hit.collider.position))) > 100
 
 func update_movement(delta) -> void:
 	var max_distance = MAX_SPEED * delta

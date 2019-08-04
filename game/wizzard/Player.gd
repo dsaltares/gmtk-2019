@@ -105,6 +105,7 @@ func update_animation():
 func pick_up_ammo():
 	pickup_animation.play("pickup")
 	can_shoot = true
+	color = Items.Colors.RED
 	update_weapon_texture()
 	$Effects/Pickup.play()
 	

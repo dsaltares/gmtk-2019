@@ -38,13 +38,14 @@ position = Vector2( 8, -56 )
 color = 1
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 40, 4.83649 )
+position = Vector2( 56.0898, 4.83649 )
+is_facing_left = true
 
 [node name="Fountain" parent="." instance=ExtResource( 8 )]
 position = Vector2( 48.0898, -64.0327 )
 color = 1
 
 [node name="Switch" parent="." instance=ExtResource( 9 )]
-position = Vector2( 24.1388, -24.1632 )
+position = Vector2( 56.0707, -8.42646 )
 frames = ExtResource( 10 )
 color = 1
