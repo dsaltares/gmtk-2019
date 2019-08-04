@@ -15,9 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GMTK Game Jam 2019"
+config/name="Onederful Wizard - GMTK Game Jam 2019"
 run/main_scene="res://levels/LevelManager.tscn"
-config/icon="res://icon.png"
+config/icon="res://wizzard/wizzard_m_idle_anim_f0.png"
 
 [display]
 
