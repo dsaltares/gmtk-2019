@@ -30,7 +30,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
@@ -38,7 +38,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
@@ -46,7 +46,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 16 )
 
 [node name="Fountain" type="KinematicBody2D" groups=[
@@ -73,15 +73,16 @@ playing = true
 
 [node name="Top" type="AnimatedSprite" parent="Red"]
 position = Vector2( 8, 8 )
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 playing = true
 
 [node name="Bottom" type="AnimatedSprite" parent="Red"]
 position = Vector2( 8, 24 )
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8, 16 )
-shape = SubResource( 3 )
+position = Vector2( 8, 12 )
+scale = Vector2( 1, 0.75 )
+shape = SubResource( 5 )
