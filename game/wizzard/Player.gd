@@ -74,7 +74,7 @@ func update_movement(delta):
 		$Effects/Footsteps.stop()
 
 func update_weapon():
-	var look_vec = get_global_mouse_position() - global_position
+	var look_vec = get_global_mouse_position() - weapon.global_position
 	weapon.global_rotation = atan2(look_vec.y, look_vec.x)
 
 	if can_shoot and not weapon_raycast.is_colliding() and Input.is_action_just_pressed("shoot"):

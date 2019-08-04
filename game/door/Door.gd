@@ -9,8 +9,8 @@ const blue_spell = preload('res://door/blue_spell.png')
 signal player_exited
 
 onready var shape = $CollisionShape2D
-onready var initial_mask = collision_mask
 
+export(bool) var is_exit = true
 export(bool) var open = false setget set_open
 export(Items.Colors) var color = Items.Colors.RED setget set_color
 
@@ -25,9 +25,12 @@ func set_open(value):
 	
 	$Spell1/Sprite.visible = not open
 	$Spell2/Sprite.visible = not open
-	
-	collision_layer = 64 if open else 128
-	collision_mask = 10 if open else initial_mask
+
+	collision_layer = 64 if open else 128	
+	if is_exit:
+		collision_mask = 10 if open else 27
+	else:
+		collision_mask = 0 if open else 27
 
 	var effect = $Effects/Open if open else $Effects/Close
 	effect.play()
@@ -45,6 +48,6 @@ func set_color(new_color):
 	$Spell2/Sprite.texture = texture
 
 func on_Area2D_body_entered(body):
-	if body.is_in_group('player'):
+	if body.is_in_group('player') and is_exit:
 		$Effects/Done.play()
 		emit_signal('player_exited')
