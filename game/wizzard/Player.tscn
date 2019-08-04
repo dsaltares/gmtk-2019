@@ -3,15 +3,15 @@
 [ext_resource path="res://wizzard/Player.gd" type="Script" id=1]
 [ext_resource path="res://wizzard/weapon_red_magic_staff.png" type="Texture" id=2]
 [ext_resource path="res://wizzard/light_01.png" type="Texture" id=3]
-[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=4]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=5]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=6]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=7]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=8]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=9]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=10]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=11]
-[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=12]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=4]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=5]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=6]
+[ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=7]
+[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=8]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=9]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=10]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=11]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=12]
 [ext_resource path="res://wizzard/pick_up_fire.png" type="Texture" id=13]
 [ext_resource path="res://wizzard/death.wav" type="AudioStream" id=14]
 [ext_resource path="res://wizzard/shoot.wav" type="AudioStream" id=15]
@@ -22,22 +22,22 @@
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "idle",
-"speed": 4.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4.5, 5 )
+extents = Vector2( 4.5, 6.59137 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "pickup"
@@ -170,9 +170,10 @@ tracks/3/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"player",
 "camera_shakers",
+"player",
 ]]
+z_index = 10
 collision_mask = 150
 collision/safe_margin = 0.05
 script = ExtResource( 1 )
@@ -207,6 +208,7 @@ playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2.12482 )
 shape = SubResource( 2 )
 
 [node name="PickUp" type="Node2D" parent="."]
