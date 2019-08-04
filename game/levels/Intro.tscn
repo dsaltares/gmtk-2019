@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/Intro.gd" type="Script" id=1]
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
@@ -7,9 +7,15 @@
 [ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=5]
 [ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=6]
 [ext_resource path="res://levels/AnimatedFireBall.tscn" type="PackedScene" id=7]
-[ext_resource path="res://levels/8_bit_font.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://enemies/orc/Orc.tscn" type="PackedScene" id=8]
+[ext_resource path="res://enemies/skeleton/Skeleton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemies/swampy/Swampy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemies/zombie/Zombie.tscn" type="PackedScene" id=11]
+[ext_resource path="res://enemies/imp/Imp.tscn" type="PackedScene" id=12]
+[ext_resource path="res://fountain/Fountain.tscn" type="PackedScene" id=13]
+[ext_resource path="res://levels/8_bit_font.ttf" type="DynamicFontData" id=14]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
@@ -17,7 +23,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "default"
 length = 3.0
 loop = true
@@ -34,26 +40,25 @@ tracks/0/keys = {
 "values": [ Vector2( 640, 624 ), Vector2( 1200, 380 ), Vector2( 640, 130 ), Vector2( 70, 380 ) ]
 }
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 150
 outline_size = 15
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=5]
 size = 50
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("PressKey:rect_scale")
@@ -68,8 +73,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "in"
+[sub_resource type="Animation" id=7]
 length = 3.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Credits:rect_position")
@@ -135,17 +139,48 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [node name="Wizard" type="AnimatedSprite" parent="."]
 position = Vector2( 624, 400 )
 scale = Vector2( 4, 4 )
-frames = SubResource( 5 )
-frame = 2
+frames = SubResource( 1 )
 playing = true
 
 [node name="AnimatedFireBall" parent="." instance=ExtResource( 7 )]
-position = Vector2( 727.784, 585.751 )
+position = Vector2( 640, 624 )
 scale = Vector2( 5, 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 6 )
+anims/default = SubResource( 2 )
+
+[node name="Orc" parent="." instance=ExtResource( 8 )]
+position = Vector2( 147.744, 512 )
+scale = Vector2( 4, 4 )
+
+[node name="Skeleton" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1056, 176.097 )
+scale = Vector2( 4, 4 )
+is_facing_left = true
+
+[node name="Swampy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1088, 552 )
+scale = Vector2( 4, 4 )
+is_facing_left = true
+
+[node name="Zombie" parent="." instance=ExtResource( 11 )]
+position = Vector2( 880, 432 )
+scale = Vector2( 4, 4 )
+is_facing_left = true
+
+[node name="Imp" parent="." instance=ExtResource( 12 )]
+position = Vector2( 192, 176 )
+scale = Vector2( 4, 4 )
+
+[node name="Fountain" parent="." instance=ExtResource( 13 )]
+position = Vector2( 768, 64 )
+scale = Vector2( 4, 4 )
+
+[node name="Fountain2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 448, 64 )
+scale = Vector2( 4, 4 )
+color = 1
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -156,11 +191,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -112.0
+margin_top = 240.0
 margin_right = 1280.0
-margin_bottom = -7.99988
+margin_bottom = 344.0
 rect_pivot_offset = Vector2( 640, 52.0001 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
 text = "Onederful Wizard"
 align = 1
 valign = 1
@@ -170,12 +205,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 720.0
+margin_top = 640.0
 margin_right = 1280.0
-margin_bottom = 800.0
+margin_bottom = 720.0
 rect_pivot_offset = Vector2( 640, 52.0001 )
-custom_fonts/font = SubResource( 2 )
-text = "Developed by Jay Cano and David Saltares for GTMK Game Jam 2019"
+custom_fonts/font = SubResource( 4 )
+text = "Developed by Jay Cano and David Saltares for GMTK Game Jam 2019"
 align = 1
 valign = 1
 
@@ -187,14 +222,13 @@ anchor_bottom = 1.0
 margin_top = 496.0
 margin_right = 1280.0
 margin_bottom = 600.0
-rect_scale = Vector2( 0, 0 )
 rect_pivot_offset = Vector2( 640, 52.0001 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
 text = "Press any key to play"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 autoplay = "in"
-anims/idle = SubResource( 3 )
-anims/in = SubResource( 4 )
+anims/idle = SubResource( 6 )
+anims/in = SubResource( 7 )
