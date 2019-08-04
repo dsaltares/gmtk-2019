@@ -6,6 +6,7 @@ export var MAX_SPEED = 150
 
 onready var sprite = $AnimatedSprite
 onready var animation = $AnimationPlayer
+onready var contact = $Contact
 
 var path = PoolVector2Array()
 var target = null
@@ -102,3 +103,10 @@ func _on_Visibility_body_exited(body):
 	if body == target and not can_see:
 		target = null
 		set_physics_process(false)
+
+
+func _on_Contact_body_entered(body):
+	if not is_dead:
+		if body.name == "Player":
+			set_physics_process(true)
+			can_see = true
