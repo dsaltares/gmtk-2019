@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/BaseLevel.gd" type="Script" id=1]
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://switch/Switch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://enemies/orc/Orc.tscn" type="PackedScene" id=9]
 
 [node name="LevelThree" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,8 +42,7 @@ position = Vector2( 8, -56 )
 position = Vector2( 7.17717, -32 )
 is_facing_left = true
 
-[node name="Enemy2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 7.17717, 34.417 )
+[node name="Orc" parent="." instance=ExtResource( 9 )]
+position = Vector2( 3.50961, 32.8251 )
 [connection signal="position_changed" from="Player" to="." method="_on_Player_position_changed"]
 [connection signal="player_killed" from="Enemy" to="." method="_on_Enemy_player_killed"]
-[connection signal="player_killed" from="Enemy2" to="." method="_on_Enemy_player_killed"]

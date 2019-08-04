@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/BaseLevel.gd" type="Script" id=1]
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://switch/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://switch/blue_frames.tres" type="SpriteFrames" id=9]
 [ext_resource path="res://enemies/zombie/Zombie.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemies/swampy/Swampy.tscn" type="PackedScene" id=11]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -56,3 +57,6 @@ position = Vector2( -8, -56 )
 [node name="Zombie" parent="." instance=ExtResource( 10 )]
 position = Vector2( 56, 22.4936 )
 is_facing_left = true
+
+[node name="Swampy" parent="." instance=ExtResource( 11 )]
+position = Vector2( -55.3874, -8.64697 )

@@ -8,10 +8,11 @@
 extents = Vector2( 6.47871, 6.53993 )
 
 [node name="Swampy" instance=ExtResource( 1 )]
+MAX_SPEED = 75
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 0
+frame = 2
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 0.261364, 0.98519 )

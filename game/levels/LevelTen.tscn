@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://levels/BaseLevel.gd" type="Script" id=1]
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://switch/blue_frames.tres" type="SpriteFrames" id=10]
 [ext_resource path="res://enemies/imp/Imp.tscn" type="PackedScene" id=11]
+[ext_resource path="res://enemies/skeleton/Skeleton.tscn" type="PackedScene" id=12]
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -77,3 +78,6 @@ position = Vector2( -136, -32 )
 
 [node name="Imp2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 120, -46.3634 )
+
+[node name="Skeleton" parent="." instance=ExtResource( 12 )]
+position = Vector2( -7.00609, -64.0419 )
