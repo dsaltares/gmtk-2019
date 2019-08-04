@@ -8,16 +8,14 @@
 extents = Vector2( 3.56351, 6.12946 )
 
 [node name="Zombie" instance=ExtResource( 1 )]
+MAX_SPEED = 80
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 3
+frame = 0
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
-
-[node name="Visibility" parent="." index="4"]
-visible = false
 
 [node name="Death" parent="Effects" index="0"]
 stream = ExtResource( 3 )
