@@ -51,7 +51,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 45.0
+radius = 60.0
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
@@ -59,7 +59,6 @@ radius = 45.0
 collision_layer = 2
 collision_mask = 239
 script = ExtResource( 1 )
-MAX_SPEED = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
