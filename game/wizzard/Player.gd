@@ -10,7 +10,7 @@ signal camera_shake_requested
 signal position_changed
 signal killed
 
-const MAX_SPEED = 200
+const MAX_SPEED = 175
 const TIME_TO_MAX_SPEED = 0.2
 const TIME_TO_HALT = 0.1
 

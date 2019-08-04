@@ -8,9 +8,9 @@ signal camera_shake_requested
 signal collide_with_player
 
 const MAX_SPEED = 300
-const TIME_TO_MAX_SPEED = 0.2
-const TIME_TO_HALT = 0.4
-const LIFE_TIME = 0.6
+const TIME_TO_MAX_SPEED = 0.1
+const TIME_TO_HALT = 0.3
+const LIFE_TIME = 0.4
 
 const ACCELERATION = MAX_SPEED / TIME_TO_MAX_SPEED
 const DECELERATION = -MAX_SPEED / TIME_TO_HALT
