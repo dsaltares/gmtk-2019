@@ -3,6 +3,7 @@ extends Node
 const Transition = preload('res://levels/ScreenTransition.tscn')
 const MessageScreen = preload('res://levels/MessageScreen.tscn')
 const Intro = preload('res://levels/Intro.tscn')
+const EndGame = preload('res://levels/EndGame.tscn')
 
 const LEVELS = [
 	'res://levels/LevelOne.tscn',
@@ -22,12 +23,14 @@ enum States {
 	LEVEL_TITLE,
 	LEVEL,
 	DEATH,
+	END_GAME
 }
 
 var message_screen = null
 var transition = null
 var level = null
 var intro = null
+var end_game = null
 var level_idx = 0
 var next_state = null
 
@@ -56,6 +59,7 @@ func deferred_transition_out():
 func clear_scene():
 	clear_intro()
 	clear_level()
+	clear_endgame()
 	clear_message()
 	clear_transition()
 
@@ -71,7 +75,12 @@ func clear_level():
 		
 	for projectile in get_tree().get_nodes_in_group('projectiles'):
 		projectile.free()
-		
+
+func clear_endgame():
+	if end_game:
+		end_game.free()
+		end_game = null
+
 func clear_transition():
 	if transition:
 		transition.free()
@@ -92,6 +101,8 @@ func load_next_scene():
 			load_level()
 		States.DEATH:
 			load_death_screen()
+		States.END_GAME:
+			load_end_game()
 
 func transition_in():
 	clear_transition()
@@ -136,8 +147,11 @@ func load_level():
 		player.connect('killed', self, 'on_Player_killed')
 
 func on_Door_player_exited():
-	level_idx = (level_idx + 1) % LEVELS.size()
-	transition_out(States.LEVEL_TITLE)
+	if level_idx == LEVELS.size() - 1:
+		transition_out(States.END_GAME)
+	else:
+		level_idx += 1
+		transition_out(States.LEVEL_TITLE)
 
 func on_Player_killed():
 	transition_out(States.DEATH)
@@ -149,6 +163,12 @@ func load_death_screen():
 	get_tree().get_root().add_child(message_screen)
 	get_tree().set_current_scene(message_screen)
 	$MusicManager.play('death')
+
+func load_end_game():
+	end_game = EndGame.instance()
+	get_tree().get_root().add_child(end_game)
+	get_tree().set_current_scene(end_game)
+	$MusicManager.play('ending')
 
 func on_DeathScreen_done():
 	transition_out(States.LEVEL_TITLE)
