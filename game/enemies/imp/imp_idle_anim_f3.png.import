@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/6_flamelash_spritesheet.png-01251295a0ba11a00b9618f35dd97422.stex"
+path="res://.import/imp_idle_anim_f3.png-fc136e18c4437c46aa1d89bf3d494c5f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imp/6_flamelash_spritesheet.png"
-dest_files=[ "res://.import/6_flamelash_spritesheet.png-01251295a0ba11a00b9618f35dd97422.stex" ]
+source_file="res://enemies/imp/imp_idle_anim_f3.png"
+dest_files=[ "res://.import/imp_idle_anim_f3.png-fc136e18c4437c46aa1d89bf3d494c5f.stex" ]
 
 [params]
 

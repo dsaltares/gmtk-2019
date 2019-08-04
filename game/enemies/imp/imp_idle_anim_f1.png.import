@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/imp_idle_anim_f0.png-07c16d9cdcd4314479a8e5339cb56ff4.stex"
+path="res://.import/imp_idle_anim_f1.png-53d2f3ad24b7eafe0a6d936f59468e52.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imp/imp_idle_anim_f0.png"
-dest_files=[ "res://.import/imp_idle_anim_f0.png-07c16d9cdcd4314479a8e5339cb56ff4.stex" ]
+source_file="res://enemies/imp/imp_idle_anim_f1.png"
+dest_files=[ "res://.import/imp_idle_anim_f1.png-53d2f3ad24b7eafe0a6d936f59468e52.stex" ]
 
 [params]
 

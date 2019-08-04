@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/BaseLevel.gd" type="Script" id=1]
-[ext_resource path="res://tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://wizzard/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=4]
-[ext_resource path="res://Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://switch/Switch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://switch/red_frames.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=9]
 
 [node name="LevelTwo" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,6 +33,8 @@ position = Vector2( 0, 0 )
 [node name="Switch" parent="." instance=ExtResource( 6 )]
 position = Vector2( 8, -40 )
 frames = ExtResource( 7 )
+toggled = false
+color = 0
 
 [node name="Door" parent="." instance=ExtResource( 8 )]
 position = Vector2( -72, -8 )
@@ -40,4 +42,3 @@ position = Vector2( -72, -8 )
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 24, 8 )
 [connection signal="position_changed" from="Player" to="." method="_on_Player_position_changed"]
-[connection signal="player_killed" from="Enemy" to="." method="_on_Enemy_player_killed"]

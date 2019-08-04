@@ -1,11 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/BaseLevel.gd" type="Script" id=1]
-[ext_resource path="res://tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://wizzard/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://crosshair/Crosshair.gd" type="Script" id=4]
-[ext_resource path="res://Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://camera/Camera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=6]
+
+
+
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource( 1 )
