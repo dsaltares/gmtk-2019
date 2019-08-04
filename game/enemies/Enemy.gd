@@ -22,9 +22,7 @@ func _physics_process(delta) -> void:
 	update_visibility()
 	if can_see:
 		update_movement(delta)
-		update_animation()
-	else:
-		$Effects/Footsteps.stop()
+	update_animation()
 
 func update_visibility():
 	if not can_see:
@@ -68,9 +66,6 @@ func update_movement(delta) -> void:
 		starting_position = path[0]
 		path.remove(0)
 
-	if not $Effects/Footsteps.playing:
-		$Effects/Footsteps.play()
-
 func update_animation() -> void:
 	var animation = null
 	if is_moving:
@@ -99,7 +94,7 @@ func _on_Visibility_body_entered(body):
 		if body.name == "Player" or body.name == "Projectile":
 			target = body
 			update_visibility()
-			set_physics_process(true)	
+			set_physics_process(true)
 
 
 func _on_Visibility_body_exited(body):

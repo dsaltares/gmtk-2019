@@ -7,19 +7,15 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.47871, 6.53993 )
 
-[node name="Swampy" index="0" instance=ExtResource( 1 )]
+[node name="Swampy" instance=ExtResource( 1 )]
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-animation = "run"
-frame = 3
+frame = 0
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 0.261364, 0.98519 )
 shape = SubResource( 1 )
 
-[node name="Footsteps" parent="Effects" index="0"]
-stream = null
-
-[node name="Death" parent="Effects" index="1"]
+[node name="Death" parent="Effects" index="0"]
 stream = ExtResource( 3 )

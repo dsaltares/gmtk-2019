@@ -1,6 +1,9 @@
 extends Node2D
 
 func _ready():
+	var player = get_tree().get_nodes_in_group("player")[0]
+	player.connect('position_changed', self, '_on_Player_position_changed')
+	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		enemy.connect('player_killed', self, '_on_Enemy_player_killed')
 		
