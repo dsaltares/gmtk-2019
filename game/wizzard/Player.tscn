@@ -233,6 +233,7 @@ stream = ExtResource( 14 )
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource( 15 )
+volume_db = -5.918
 
 [node name="Pickup" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource( 16 )
