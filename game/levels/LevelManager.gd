@@ -2,6 +2,7 @@ extends Node
 
 const Transition = preload('res://levels/ScreenTransition.tscn')
 const MessageScreen = preload('res://levels/MessageScreen.tscn')
+const Intro = preload('res://levels/Intro.tscn')
 
 const LEVELS = [
 	'res://levels/LevelOne.tscn',
@@ -15,6 +16,7 @@ const LEVELS = [
 ]
 
 enum States {
+	INTRO,
 	LEVEL_TITLE,
 	LEVEL,
 	DEATH,
@@ -23,11 +25,12 @@ enum States {
 var message_screen = null
 var transition = null
 var level = null
+var intro = null
 var level_idx = 0
 var next_state = null
 
 func _ready():
-	transition_out(States.LEVEL_TITLE)
+	transition_out(States.INTRO)
 	
 func transition_out(state):
 	next_state = state
@@ -49,10 +52,16 @@ func deferred_transition_out():
 	transition_in()
 
 func clear_scene():
+	clear_intro()
 	clear_level()
 	clear_message()
 	clear_transition()
-		
+
+func clear_intro():
+	if intro:
+		intro.free()
+		intro = null
+
 func clear_level():
 	if level:
 		level.free()
@@ -73,6 +82,8 @@ func clear_message():
 
 func load_next_scene():
 	match next_state:
+		States.INTRO:
+			load_intro()
 		States.LEVEL_TITLE:
 			load_level_title()
 		States.LEVEL:
@@ -86,6 +97,16 @@ func transition_in():
 	transition.play('in')
 	transition.connect('done', self, 'on_TransitionIn_done')
 	$TransitionLayer.add_child(transition)
+
+func load_intro():
+	intro = Intro.instance()
+	get_tree().get_root().add_child(intro)
+	get_tree().set_current_scene(intro)
+	intro.connect('done', self, 'on_Intro_done') 
+	$MusicManager.play('intro')
+
+func on_Intro_done():
+	transition_out(States.LEVEL_TITLE)
 
 func load_level_title():
 	message_screen = MessageScreen.instance()
