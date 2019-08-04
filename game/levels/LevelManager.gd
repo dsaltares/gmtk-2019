@@ -14,6 +14,7 @@ const LEVELS = [
 	'res://levels/LevelSeven.tscn',
 	'res://levels/LevelEight.tscn',
 	'res://levels/LevelNine.tscn',
+	'res://levels/LevelTen.tscn',
 	
 ]
 
