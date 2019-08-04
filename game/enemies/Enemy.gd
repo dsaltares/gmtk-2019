@@ -82,6 +82,8 @@ func kill() -> void:
 	set_physics_process(false)
 	is_dead = true
 	sprite.visible = false
+	collision_layer = 0
+	collision_mask = 0
 	
 	$Effects/Death.play()
 	animation.play("death")	
