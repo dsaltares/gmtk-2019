@@ -8,6 +8,10 @@ const LEVELS = [
 	'res://levels/LevelTwo.tscn',
 	'res://levels/LevelThree.tscn',
 	'res://levels/LevelFour.tscn',
+	'res://levels/LevelFive.tscn',
+	'res://levels/LevelSix.tscn',
+	'res://levels/LevelSeven.tscn',
+	'res://levels/LevelEight.tscn',
 ]
 
 enum States {
