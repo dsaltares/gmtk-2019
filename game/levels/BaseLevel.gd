@@ -1,5 +1,9 @@
 extends Node2D
 
+func _ready():
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.connect('player_killed', self, '_on_Enemy_player_killed')
+		
 func _on_Player_position_changed(player_position):
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	print("player moving")

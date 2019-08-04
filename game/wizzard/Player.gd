@@ -8,6 +8,7 @@ const blue_weapon = preload('res://wizzard/weapon_blue_magic_staff.png')
 
 signal camera_shake_requested
 signal position_changed
+signal killed
 
 const MAX_SPEED = 200
 const TIME_TO_MAX_SPEED = 0.2
@@ -34,6 +35,7 @@ var is_facing_left = false
 
 func _ready():
 	emit_signal("position_changed", position)
+	death_animation.connect('animation_finished', self, 'on_DeathAnimation_animation_finished')
 
 func _physics_process(delta):
 	update_movement(delta)
@@ -127,3 +129,6 @@ func kill():
 		death_animation.play("death_left")
 	else:
 		death_animation.play("death_right")
+		
+func on_DeathAnimation_animation_finished(anim):
+	emit_signal('killed')
