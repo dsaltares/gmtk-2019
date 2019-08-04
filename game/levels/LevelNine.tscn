@@ -35,6 +35,7 @@ position = Vector2( 0, 0 )
 
 [node name="Door" parent="." instance=ExtResource( 6 )]
 position = Vector2( -8, -24 )
+is_exit = false
 color = 1
 
 [node name="Fountain" parent="." instance=ExtResource( 7 )]
