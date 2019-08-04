@@ -13,6 +13,7 @@ MAX_SPEED = 80
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
 frame = 0
+speed_scale = 0.5
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
