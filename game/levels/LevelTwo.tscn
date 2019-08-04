@@ -33,8 +33,6 @@ position = Vector2( 0, 0 )
 [node name="Switch" parent="." instance=ExtResource( 6 )]
 position = Vector2( 8, -40 )
 frames = ExtResource( 7 )
-toggled = false
-color = 0
 
 [node name="Door" parent="." instance=ExtResource( 8 )]
 position = Vector2( -72, -8 )
@@ -42,3 +40,4 @@ position = Vector2( -72, -8 )
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 24, 8 )
 [connection signal="position_changed" from="Player" to="." method="_on_Player_position_changed"]
+[connection signal="player_killed" from="Enemy" to="." method="_on_Enemy_player_killed"]
