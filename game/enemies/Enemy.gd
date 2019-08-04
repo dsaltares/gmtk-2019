@@ -23,6 +23,8 @@ func _physics_process(delta) -> void:
 	if can_see:
 		update_movement(delta)
 		update_animation()
+	else:
+		$Effects/Footsteps.stop()
 
 func update_visibility():
 	if not can_see:
@@ -66,6 +68,9 @@ func update_movement(delta) -> void:
 		starting_position = path[0]
 		path.remove(0)
 
+	if not $Effects/Footsteps.playing:
+		$Effects/Footsteps.play()
+
 func update_animation() -> void:
 	var animation = null
 	if is_moving:
@@ -82,7 +87,8 @@ func kill() -> void:
 	set_physics_process(false)
 	is_dead = true
 	sprite.visible = false
-
+	
+	$Effects/Death.play()
 	animation.play("death")	
 	yield(animation, "animation_finished")
 

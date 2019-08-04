@@ -1,32 +1,34 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f0.png" type="Texture" id=2]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f1.png" type="Texture" id=3]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f2.png" type="Texture" id=4]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f3.png" type="Texture" id=5]
-[ext_resource path="res://enemies/imp/imp_run_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://enemies/imp/imp_run_anim_f1.png" type="Texture" id=7]
-[ext_resource path="res://enemies/imp/imp_run_anim_f2.png" type="Texture" id=8]
-[ext_resource path="res://enemies/imp/imp_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://enemies/imp/imp_run_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://enemies/imp/imp_run_anim_f1.png" type="Texture" id=3]
+[ext_resource path="res://enemies/imp/imp_run_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://enemies/imp/imp_run_anim_f3.png" type="Texture" id=5]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f3.png" type="Texture" id=9]
 [ext_resource path="res://enemies/imp/6_flamelash_spritesheet.png" type="Texture" id=10]
+[ext_resource path="res://wizzard/footsteps.wav" type="AudioStream" id=11]
+[ext_resource path="res://enemies/imp/death.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "idle",
-"speed": 4.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -62,7 +64,7 @@ MAX_SPEED = 100
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -87,5 +89,15 @@ frame = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
 shape = SubResource( 4 )
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 11 )
+volume_db = -9.973
+pitch_scale = 1.1
+
+[node name="Death" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 12 )
 [connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
 [connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
