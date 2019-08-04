@@ -146,6 +146,8 @@ func load_level():
 		
 	for player in get_tree().get_nodes_in_group('player'):
 		player.connect('killed', self, 'on_Player_killed')
+		
+	$MusicManager.play('game')
 
 func on_Door_player_exited():
 	if level_idx == LEVELS.size() - 1:
@@ -172,7 +174,7 @@ func load_end_game():
 	$MusicManager.play('ending')
 
 func on_DeathScreen_done():
-	transition_out(States.LEVEL_TITLE)
+	transition_out(States.LEVEL)
 
 func on_TransitionIn_done():
 	call_deferred('deferred_transition_in_done')
