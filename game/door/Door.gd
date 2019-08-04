@@ -32,6 +32,9 @@ func set_open(value):
 	
 	collision_layer = 0 if open else initial_layer
 	collision_mask = 0 if open else initial_mask
+	
+	if open:
+		$Effects/Open.play()
 
 func set_color(new_color):
 	color = new_color
@@ -47,4 +50,5 @@ func set_color(new_color):
 
 func on_Area2D_body_entered(body):
 	if body.is_in_group('player'):
+		$Effects/Done.play()
 		emit_signal('player_exited')

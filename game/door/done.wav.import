@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/done.wav-5b328180b977d679bb431981aa865341.sample"
+
+[deps]
+
+source_file="res://door/done.wav"
+dest_files=[ "res://.import/done.wav-5b328180b977d679bb431981aa865341.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
