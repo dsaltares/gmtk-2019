@@ -8,6 +8,7 @@
 extents = Vector2( 10, 5.80501 )
 
 [node name="Switch" type="AnimatedSprite" groups=[
+"switches",
 "camera_shakers",
 ]]
 position = Vector2( 8, 8 )
