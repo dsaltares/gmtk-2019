@@ -29,8 +29,8 @@ func set_open(value):
 	collision_layer = 64 if open else 128
 	collision_mask = 10 if open else initial_mask
 
-	if open:
-		$Effects/Open.play()
+	var effect = $Effects/Open if open else $Effects/Close
+	effect.play()
 
 func set_color(new_color):
 	color = new_color
