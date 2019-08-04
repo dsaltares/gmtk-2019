@@ -93,6 +93,7 @@ func load_level_title():
 	message_screen.connect('done', self, 'on_LevelTitle_done') 
 	get_tree().get_root().add_child(message_screen)
 	get_tree().set_current_scene(message_screen)
+	$MusicManager.play('game')
 
 func on_LevelTitle_done():
 	transition_out(States.LEVEL)
@@ -124,6 +125,7 @@ func load_death_screen():
 	message_screen.connect('done', self, 'on_DeathScreen_done') 
 	get_tree().get_root().add_child(message_screen)
 	get_tree().set_current_scene(message_screen)
+	$MusicManager.play('death')
 
 func on_DeathScreen_done():
 	transition_out(States.LEVEL_TITLE)
