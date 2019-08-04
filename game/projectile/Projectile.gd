@@ -48,9 +48,11 @@ func _physics_process(delta):
 			set_color(collider.color)
 			self.shooter.color = collider.color
 			bounce_off(collision)
+			$Effects/HitFountain.play()
 		else:
 			emit_signal('camera_shake_requested', 1.25, 0.75)
 			bounce_off(collision)
+			$Effects/HitWall.play()
 
 func bounce_off(collision):
 	direction = direction - 2 * (direction.dot(collision.normal)) * collision.normal
