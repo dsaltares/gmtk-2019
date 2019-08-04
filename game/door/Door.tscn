@@ -91,7 +91,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
-frame = 11
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spell1"]
 anims/idle = SubResource( 2 )
@@ -103,7 +103,7 @@ position = Vector2( 0, 16 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
-frame = 11
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spell2"]
 anims/idle = SubResource( 3 )

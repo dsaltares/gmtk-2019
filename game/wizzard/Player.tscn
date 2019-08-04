@@ -186,6 +186,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -14 )
 
 [node name="ShootPoint" type="Position2D" parent="WeaponPivot"]
+editor/display_folded = true
 position = Vector2( 25.0799, 0.184414 )
 
 [node name="Light2D" type="Light2D" parent="WeaponPivot/ShootPoint"]
@@ -196,7 +197,7 @@ color = Color( 0, 0.694118, 1, 1 )
 [node name="RayCast2D" type="RayCast2D" parent="WeaponPivot"]
 enabled = true
 cast_to = Vector2( 24, 0 )
-collision_mask = 4
+collision_mask = 196
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.184418, -5.16351 )
