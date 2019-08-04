@@ -1,32 +1,32 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://enemies/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://enemies/imp/imp_run_anim_f0.png" type="Texture" id=2]
-[ext_resource path="res://enemies/imp/imp_run_anim_f1.png" type="Texture" id=3]
-[ext_resource path="res://enemies/imp/imp_run_anim_f2.png" type="Texture" id=4]
-[ext_resource path="res://enemies/imp/imp_run_anim_f3.png" type="Texture" id=5]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f1.png" type="Texture" id=7]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f2.png" type="Texture" id=8]
-[ext_resource path="res://enemies/imp/imp_idle_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f1.png" type="Texture" id=3]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://enemies/imp/imp_idle_anim_f3.png" type="Texture" id=5]
+[ext_resource path="res://enemies/imp/imp_run_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://enemies/imp/imp_run_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://enemies/imp/imp_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://enemies/imp/imp_run_anim_f3.png" type="Texture" id=9]
 [ext_resource path="res://enemies/imp/6_flamelash_spritesheet.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "hit",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [  ],
 "loop": true,
-"name": "idle",
-"speed": 4.0
+"name": "hit",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -48,16 +48,18 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 ]
 }
 
+[sub_resource type="CircleShape2D" id=4]
+radius = 45.0
+
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 collision_layer = 2
-collision_mask = 23
+collision_mask = 47
 script = ExtResource( 1 )
 MAX_SPEED = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.184418, -5.16351 )
 frames = SubResource( 1 )
 animation = "idle"
 frame = 3
@@ -67,11 +69,8 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.507599, -3.91588 )
+position = Vector2( 0.936026, 1.58048 )
 shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 3 )
@@ -83,3 +82,10 @@ texture = ExtResource( 10 )
 vframes = 7
 hframes = 7
 frame = 48
+
+[node name="Visibility" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
+[connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]

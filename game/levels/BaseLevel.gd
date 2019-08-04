@@ -6,8 +6,6 @@ func _ready():
 		
 func _on_Player_position_changed(player_position):
 	var enemies = get_tree().get_nodes_in_group("enemy")
-	print("player moving")
-	print(enemies)
 	
 	for i in enemies.size():
 		var enemy = enemies[i]
