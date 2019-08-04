@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death.wav-0fda61eff6d92f3ead4c8b6a2e99b52e.sample"
+
+[deps]
+
+source_file="res://enemies/swampy/death.wav"
+dest_files=[ "res://.import/death.wav-0fda61eff6d92f3ead4c8b6a2e99b52e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
