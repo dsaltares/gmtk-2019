@@ -36,6 +36,7 @@ frames = ExtResource( 7 )
 
 [node name="Door" parent="." instance=ExtResource( 8 )]
 position = Vector2( 8, -56 )
+collision_layer = 128
 
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 24, -24 )

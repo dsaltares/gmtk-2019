@@ -74,7 +74,7 @@ extents = Vector2( 3, 16 )
 ]]
 position = Vector2( 8, 8 )
 rotation = 1.57079
-collision_layer = 4
+collision_layer = 128
 collision_mask = 27
 script = ExtResource( 1 )
 __meta__ = {
@@ -91,7 +91,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
-frame = 3
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spell1"]
 anims/idle = SubResource( 2 )
@@ -103,7 +103,7 @@ position = Vector2( 0, 16 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
-frame = 3
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Spell2"]
 anims/idle = SubResource( 3 )

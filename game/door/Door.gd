@@ -9,16 +9,12 @@ const blue_spell = preload('res://door/blue_spell.png')
 signal player_exited
 
 onready var shape = $CollisionShape2D
+onready var initial_mask = collision_mask
 
 export(bool) var open = false setget set_open
 export(Items.Colors) var color = Items.Colors.RED setget set_color
 
-var initial_layer;
-var initial_mask
-
 func _ready():
-	initial_layer = collision_layer
-	initial_mask = collision_mask
 	$Spell1/AnimationPlayer.play("idle")
 	$Spell2/AnimationPlayer.play("idle")
 	
@@ -30,9 +26,9 @@ func set_open(value):
 	$Spell1/Sprite.visible = not open
 	$Spell2/Sprite.visible = not open
 	
-	collision_layer = 0 if open else initial_layer
-	collision_mask = 0 if open else initial_mask
-	
+	collision_layer = 64 if open else 128
+	collision_mask = 10 if open else initial_mask
+
 	if open:
 		$Effects/Open.play()
 

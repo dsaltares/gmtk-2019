@@ -67,6 +67,8 @@ shoot={
 2d_physics/layer_4="player_projectiles"
 2d_physics/layer_5="enemy_projectiles"
 2d_physics/layer_6="objects"
+2d_physics/layer_7="door_open"
+2d_physics/layer_8="door_closed"
 
 [rendering]
 
