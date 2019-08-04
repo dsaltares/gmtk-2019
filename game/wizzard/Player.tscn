@@ -1,30 +1,34 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://wizzard/Player.gd" type="Script" id=1]
 [ext_resource path="res://wizzard/weapon_red_magic_staff.png" type="Texture" id=2]
 [ext_resource path="res://wizzard/light_01.png" type="Texture" id=3]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=4]
-[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=5]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=7]
-[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://wizzard/wizzard_m_hit_anim_f0.png" type="Texture" id=4]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f0.png" type="Texture" id=5]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f1.png" type="Texture" id=6]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f2.png" type="Texture" id=7]
+[ext_resource path="res://wizzard/wizzard_m_idle_anim_f3.png" type="Texture" id=8]
 [ext_resource path="res://wizzard/wizzard_m_run_anim_f0.png" type="Texture" id=9]
 [ext_resource path="res://wizzard/wizzard_m_run_anim_f1.png" type="Texture" id=10]
 [ext_resource path="res://wizzard/wizzard_m_run_anim_f2.png" type="Texture" id=11]
 [ext_resource path="res://wizzard/wizzard_m_run_anim_f3.png" type="Texture" id=12]
 [ext_resource path="res://wizzard/pick_up_fire.png" type="Texture" id=13]
+[ext_resource path="res://wizzard/death.wav" type="AudioStream" id=14]
+[ext_resource path="res://wizzard/shoot.wav" type="AudioStream" id=15]
+[ext_resource path="res://wizzard/pickup.wav" type="AudioStream" id=16]
+[ext_resource path="res://wizzard/footsteps.wav" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "hit",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
@@ -166,8 +170,8 @@ tracks/3/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"camera_shakers",
 "player",
+"camera_shakers",
 ]]
 collision_mask = 22
 collision/safe_margin = 0.05
@@ -221,3 +225,17 @@ anims/pickup = SubResource( 3 )
 playback_speed = 2.0
 anims/death_left = SubResource( 4 )
 anims/death_right = SubResource( 5 )
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Death" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 14 )
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 15 )
+
+[node name="Pickup" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 16 )
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Effects"]
+stream = ExtResource( 17 )

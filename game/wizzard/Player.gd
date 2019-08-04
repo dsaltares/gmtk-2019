@@ -67,6 +67,11 @@ func update_movement(delta):
 
 	is_facing_left = last_horizontal_dir < 0 
 	move_and_slide(velocity)
+	
+	if velocity.length_squared() > 0 and not $Effects/Footsteps.playing:
+		$Effects/Footsteps.play()
+	elif velocity.length_squared() == 0 and $Effects/Footsteps.playing:
+		$Effects/Footsteps.stop()
 
 func update_weapon():
 	var look_vec = get_global_mouse_position() - global_position
@@ -82,6 +87,8 @@ func update_weapon():
 		get_tree().get_root().add_child(projectile)
 		can_shoot = false
 		update_weapon_texture()
+		$Effects/Shoot.play()
+		emit_signal('camera_shake_requested', 1.5, 0.75)
 
 func update_animation():
 	var animation = null
@@ -99,6 +106,7 @@ func pick_up_ammo():
 	pickup_animation.play("pickup")
 	can_shoot = true
 	update_weapon_texture()
+	$Effects/Pickup.play()
 	
 func set_color(new_color):
 	color = new_color
@@ -129,6 +137,8 @@ func kill():
 		death_animation.play("death_left")
 	else:
 		death_animation.play("death_right")
+		
+	$Effects/Death.play()
 		
 func on_DeathAnimation_animation_finished(anim):
 	emit_signal('killed')
