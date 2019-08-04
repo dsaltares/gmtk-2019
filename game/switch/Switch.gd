@@ -29,6 +29,7 @@ func toggle(value=null):
 	play('on' if toggled else 'off')
 	emit_signal('toggled', toggled)
 	emit_signal('camera_shake_requested', 2.0, 0.50)
+	$Effects/Toggle.play()
 	
 
 func set_color(new_color):

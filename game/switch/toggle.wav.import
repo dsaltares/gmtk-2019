@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/toggle.wav-0e29e576e3bad2db04d0d166c913696f.sample"
+
+[deps]
+
+source_file="res://switch/toggle.wav"
+dest_files=[ "res://.import/toggle.wav-0e29e576e3bad2db04d0d166c913696f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
