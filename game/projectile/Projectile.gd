@@ -40,9 +40,10 @@ func _physics_process(delta):
 			emit_signal('camera_shake_requested', 2.5, 0.5)
 			queue_free()
 		elif collider.is_in_group('enemy'):
-			emit_signal('camera_shake_requested', 2.0, 0.50)
-			collider.kill()
 			collider.add_collision_exception_with(self)
+			if speed >= 0.1:
+				emit_signal('camera_shake_requested', 2.0, 0.50)
+				collider.kill()
 		elif collider.is_in_group('fountains'):
 			emit_signal('camera_shake_requested', 2.0, 0.50)
 			set_color(collider.color)
