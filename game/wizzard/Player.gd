@@ -132,6 +132,7 @@ func kill():
 	emit_signal('camera_shake_requested', 12.5, 0.75)
 	set_physics_process(false)
 	sprite.animation = "hit"
+	$Effects/Footsteps.stop()
 	
 	if is_facing_left:
 		death_animation.play("death_left")
