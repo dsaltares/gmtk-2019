@@ -6,7 +6,6 @@ export var MAX_SPEED = 150
 
 onready var sprite = $AnimatedSprite
 onready var animation = $AnimationPlayer
-onready var contact = $Contact
 
 var path = PoolVector2Array()
 var target = null
@@ -32,7 +31,6 @@ func update_visibility():
 		if ray_hit:
 			var name = ray_hit.collider.name
 			if name == "Player" or name == "Projectile":
-				print(rad2deg(abs(position.angle_to_point(ray_hit.collider.position))))
 				if is_facing_left:
 					can_see = rad2deg(abs(position.angle_to_point(ray_hit.collider.position))) < 80
 				else:
